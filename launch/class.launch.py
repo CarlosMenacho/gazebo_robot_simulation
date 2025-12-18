@@ -36,8 +36,8 @@ def generate_launch_description():
     y_pose = LaunchConfiguration('y_pose', default='-0.5')
 
     world = os.path.join(
-        get_package_share_directory('gazebo_differential_drive_robot'),
-        'worlds', 'test_world.sdf')
+        get_package_share_directory('gazebo_robot_simulation'), 'worlds',
+        'test_world.sdf')
 
     gzserver_cmd = IncludeLaunchDescription(PythonLaunchDescriptionSource(
         os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')),
@@ -69,8 +69,9 @@ def generate_launch_description():
 
     set_env_vars_resources = AppendEnvironmentVariable(
         'GZ_SIM_RESOURCE_PATH',
-        os.path.join(get_package_share_directory('gazebo_differential_drive_robot'),
-                     'models'))
+        os.path.join(
+            get_package_share_directory('gazebo_differential_drive_robot'),
+            'models'))
 
     ld = LaunchDescription()
 

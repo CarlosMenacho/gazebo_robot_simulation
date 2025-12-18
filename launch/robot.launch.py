@@ -12,7 +12,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     # Define the robot's name and package name
     robot_name = "differential_drive_robot"
-    package_name = "gazebo_differential_drive_robot"
+    package_name = "gazebo_robot_simulation"
 
     # Get the path to the test_world.sdf file
     world_file_path = os.path.join(get_package_share_directory(package_name),
@@ -23,9 +23,8 @@ def generate_launch_description():
                                'models')
 
     # Set Gazebo resource path to find custom models
-    set_gz_resource_path = SetEnvironmentVariable(
-        name='GZ_SIM_RESOURCE_PATH',
-        value=models_path)
+    set_gz_resource_path = SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH',
+                                                  value=models_path)
 
     # Define a launch argument for the world file, defaulting to "test_world.sdf"
     world_arg = DeclareLaunchArgument(
