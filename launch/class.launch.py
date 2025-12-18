@@ -69,9 +69,8 @@ def generate_launch_description():
 
     set_env_vars_resources = AppendEnvironmentVariable(
         'GZ_SIM_RESOURCE_PATH',
-        os.path.join(
-            get_package_share_directory('gazebo_differential_drive_robot'),
-            'models'))
+        os.path.join(get_package_share_directory('gazebo_robot_simulation'),
+                     'models'))
 
     ld = LaunchDescription()
 
