@@ -15,6 +15,10 @@ Install the required dependencies:
 sudo apt install ros-jazzy-turtlebot3*
 ```
 
+```bash
+export TURTLEBOT3_MODEL=waffle
+```
+
 ## Usage
 
 Build the workspace:
