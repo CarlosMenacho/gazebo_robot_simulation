@@ -24,6 +24,7 @@ from launch.actions import AppendEnvironmentVariable
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -81,5 +82,18 @@ def generate_launch_description():
     ld.add_action(gzclient_cmd)
     ld.add_action(spawn_turtlebot_cmd)
     ld.add_action(robot_state_publisher_cmd)
+
+    # Bridge
+    bridge_config_file = os.path.join(
+        get_package_share_directory('gazebo_robot_simulation'), 'config', 'gz_bridge.yaml'
+    )
+
+    bridge_cmd = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        parameters=[{'config_file': bridge_config_file}],
+        output='screen'
+    )
+    ld.add_action(bridge_cmd)
 
     return ld
